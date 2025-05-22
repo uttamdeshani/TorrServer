@@ -377,7 +377,7 @@ const VideoPlayer = ({ videoSrc, captionSrc = '', title, onNotSupported }) => {
     <>
       <StyledButton onClick={() => setOpen(true)}>
         <PlayArrowIcon />
-        <span>{t('Play')}</span>
+        <span>{`${t('Play')} `}</span>
       </StyledButton>
 
       <Dialog

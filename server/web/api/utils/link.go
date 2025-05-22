@@ -50,7 +50,7 @@ func ParseLink(link string) (*torrent.TorrentSpec, error) {
 	case "file":
 		return fromFile(urlLink.Path)
 	default:
-		err = fmt.Errorf("unknown scheme:", urlLink, urlLink.Scheme)
+		err = fmt.Errorf("unknown scheme for URL '%s': scheme is '%s'", urlLink.String(), urlLink.Scheme)
 	}
 	return nil, err
 }
