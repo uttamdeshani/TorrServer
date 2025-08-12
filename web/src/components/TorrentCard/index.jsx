@@ -57,6 +57,7 @@ const Torrent = ({ torrent }) => {
     download_speed: downloadSpeed,
     hash,
     stat,
+    data,
   } = torrent
 
   const dropTorrent = () => axios.post(torrentsHost(), { action: 'drop', hash })
@@ -91,8 +92,8 @@ const Torrent = ({ torrent }) => {
   const getFileLink = (path, id) =>
     `${streamHost()}/${encodeURIComponent(path.split('\\').pop().split('/').pop())}?link=${hash}&index=${id}&play`
 
-  const fileList = torrent?.data ? JSON.parse(torrent?.data)?.TorrServer?.Files : []
-  const playableVideoList = fileList.length ? fileList?.filter(({ path }) => isFilePlayable(path)) : []
+  const fileList = (data && JSON.parse(data).TorrServer?.Files) || []
+  const playableVideoList = fileList.filter(({ path }) => isFilePlayable(path))
   const getVideoCaption = path => {
     // Get base name without extension
     const baseName = path.replace(/\.[^/.]+$/, '')
